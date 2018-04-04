@@ -112,16 +112,16 @@ summary(aov_essay_2_count)
 
 # ANOVA Test to see if there are not differences between the number of project essay 3 word count brokendown by project approval
 aov_essay_3_count <- kruskal.test(train$project_is_approved ~ train$essay3_count_nostop)
-summary(aov_essay_3_count)
+aov_essay_3_count
 
 # ANOVA Test to see if there are not differences between the number of project essay 4 word count brokendown by project approval
 aov_essay_4_count <- kruskal.test(train$project_is_approved ~ train$essay4_count_nostop)
-summary(aov_essay_4_count)
+aov_essay_4_count
 
 # ANOVA Test to see if there are not differences between the number resources requested brokendown by project approval
 aov_quantity <- kruskal.test(train$project_is_approved ~ train$quantity)
-summary(aov_quantity)
+aov_quantity
 
 # ANOVA Test to see if there are not differences between the total price of the resources requested brokendown by project approval
 aov_price <- kruskal.test(train$project_is_approved ~ train$total_price)
-summary(aov_price)
+aov_price
