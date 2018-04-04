@@ -6,6 +6,8 @@ train <- read.csv('train_clean.csv')
 
 #Change the year to a factor
 train$year <- as.factor(train$year)
+train$total_words <- train$essay1_count_nostop + train$essay2_count_nostop + train$essay3_count_nostop +
+  train$essay4_count_nostop + train$proj_resouce_count_nostop
 
 # Chi-square test to see if approval is not associated with the teacher prefix
 teacher_table <- table(train$project_is_approved, train$teacher_prefix)
@@ -69,7 +71,7 @@ subcat_chi <- chisq.test(subcat_df)
 print(subcat_chi)
 
 # Normal Residuals Check
-par(mfrow=c(4,4))
+par(mfrow=c(5,5))
 qqnorm(train$teacher_number_of_previously_posted_projects)
 qqline(train$teacher_number_of_previously_posted_projects)
 
@@ -93,6 +95,9 @@ qqline(train$quantity)
 
 qqnorm(train$total_price)
 qqline(train$total_price)
+
+qqnorm(train$total_words)
+qqline(train$total_words)
 
 # ANOVA Test to see if there are not differences between the number of previously posted projects brokendown by project approval
 aov_teach_proj <- aov(train$project_is_approved ~ train$teacher_number_of_previously_posted_projects)
@@ -125,3 +130,6 @@ aov_quantity
 # ANOVA Test to see if there are not differences between the total price of the resources requested brokendown by project approval
 aov_price <- kruskal.test(train$project_is_approved ~ train$total_price)
 aov_price
+
+aov_words <- kruskal.test(train$project_is_approved ~ train$total_words)
+aov_words
